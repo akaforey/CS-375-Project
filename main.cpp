@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <map>
 #include <unordered_map>
 
 using namespace std;
@@ -7,7 +8,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {
 
-    unordered_map<char, int> text;
+    map<char, unsigned long> text;
     char letter;
     unsigned long long num_letters = 0;
 
