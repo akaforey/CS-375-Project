@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
     char letter;
     unsigned long long num_letters = 0;
 
+    //Usage: ./huffman <input file name>
     ifstream in_file(argv[1]);
     if (!in_file.is_open()) {
         exit(1);
