@@ -2,6 +2,7 @@
 #include <fstream>
 #include <map>
 #include <unordered_map>
+#include "minheap.h"
 
 using namespace std;
 
@@ -26,7 +27,26 @@ int main(int argc, char *argv[])
         cout << i.first << " " << i.second << endl;
     }
 
-    //Min heap and Queue code would go here:
+    //Min heap
+
+    Minheap heap;
+
+    for (const auto &i : text) {
+        heap.insert(new node(i.first, i.second));
+    }
+
+    for (int i=0; i<text.size()-1; i++) {
+        node* x = heap.extractMin();
+        node* y = heap.extractMin();
+        node* z = new node(x.freq+y.freq); // Internal node
+        z.left = x;
+        z.right = y;
+        heap.insert(z);
+    }
+    node* huffman_tree = heap.extractMin();
+
+
+    //Queue code would go here:
 
 
     in_file.close();
