@@ -3,6 +3,7 @@
 #include <map>
 #include <unordered_map>
 #include "minheap.h"
+#include "queue.h"
 
 using namespace std;
 
@@ -47,7 +48,49 @@ int main(int argc, char *argv[])
 
 
     //Queue code would go here:
+    DataNode data_nodes[text.size()];
+    char sorted[text.size()];
+    int k = 0;
+    for (const auto &j : text) {
+        unsigned long min_freq = 0;
+        char min_char = 0;
+        for (const auto &i : text) {
+            if (min_char == 0 || i.second < min_freq) {
+                min_char = i.first;
+                min_freq = i.second;
+            }
+        }
+        sorted[k] = min_char;
+        k++;
+    }
+    Queue queue1(text.size(),data_nodes), queue2(text.size(),data_nodes);
+    for (int i = 0; i < text.size(); i++) {
+        data_nodes[i].data = sorted[i];
+        data_nodes[i].freq = text[sorted[i]];
+        queue1.enqueue(&data_nodes[i]);
+    }
 
+    while (queue1.head != 0 || queue2.head != 0) {
+         DataNode *node1, node2;
+        if (queue2.head == 0) {
+            node1 = queue1.dequeue();
+            if (queue1.head != 0)
+                node2 = queue1.dequeue();
+        }
+        else if (queue1.head == 0) {
+            node1 = queue2.dequeue();
+            if (queue2.head != 0)
+            node2 = queue2.dequeue();
+        }
+        else {
+            if (queue1.tail->freq < queue2.tail->freq) {
+                node1 = queue1.dequeue();
+            }
+            else {
+                node1 = queue2.dequeue();
+            }
+        }
+    }
 
     in_file.close();
     return 0;
