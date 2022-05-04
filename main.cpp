@@ -4,7 +4,6 @@
 #include <unordered_map>
 #include "minheap.h"
 #include "queue.h"
-// #include "BST.cpp"
 
 using namespace std;
 
@@ -15,7 +14,10 @@ int main(int argc, char *argv[])
     char letter;
     unsigned long long num_letters = 0;
 
-    //Usage: ./huffman <input file name>
+    if (argc != 2){
+        cout << "Usage: ./huffman <input file name>" << endl;
+    }
+
     ifstream in_file(argv[1]);
     if (!in_file.is_open()) {
         exit(1);
@@ -48,14 +50,13 @@ int main(int argc, char *argv[])
     }
     node* huffman_tree = heap.extractMin();
 cout << "Printing tree:" << endl;
-    huffman_tree->print(0);
-    // BST huffman_BST = new BST(huffman_tree);
-    // huffman_BST.print(huffman_tree, cout, 3);
+    huffman_tree->printBT("", 0);
     
 
 cout << "heap tree completed" << endl;
 
-    //Queue code would go here:
+
+    //Queue code
     DataNode data_nodes[text.size()];
     char sorted[text.size()];
     int k = 0;

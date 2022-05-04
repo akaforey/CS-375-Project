@@ -45,16 +45,42 @@ public:
         }
     }
 
-    void print(int level){
-        if (this->left){
-            (this->left)->print(level+1);
-        }
-        if (this->data){
-            cout << "Char (ascii): " << (unsigned int)this->data << ", char: " << this->data << ", frequency: " << this->freq << ", level: " << level << endl;
-        }
-        if (this->right){
-            (this->right)->print(level+1);
-        }
+    // void print(int level){
+    //     if (this->left){
+    //         (this->left)->print(level+1);
+    //     }
+    //     if (this->data){
+    //         cout << "Char (ascii): " << (unsigned int)this->data << ", char: " << this->data << ", frequency: " << this->freq << ", level: " << level << endl;
+    //     }
+    //     if (this->right){
+    //         (this->right)->print(level+1);
+    //     }
+    // }
+
+    void printBT(const std::string& prefix, bool isLeft){
+        // if( this != nullptr ){
+            std::cout << prefix;
+
+            std::cout << (isLeft ? "├──" : "└──" );
+
+            // print the value of the node
+            // std::cout << node->m_val << std::endl;
+            if (this->data){
+                // cout << "Char (ascii): " << (unsigned int)this->data << ", char: " << this->data << ", frequency: " << this->freq << endl;
+                cout << "Char (ascii): " << (unsigned int)this->data << ", char: " << this->data << ", frequency: " << this->freq << endl;
+            }
+            else {
+                cout << "Internal, frequency: " << this->freq << endl;
+            }
+
+            // enter the next tree level - left and right branch
+            if (this->left){
+                this->left->printBT( prefix + (isLeft ? "│   " : "    "), true);
+            }
+            if (this->right){
+                this->right->printBT( prefix + (isLeft ? "│   " : "    "), false);
+            }
+        // }
     }
 
     char value() {return data;}
