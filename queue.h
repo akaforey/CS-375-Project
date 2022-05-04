@@ -32,10 +32,10 @@ Queue::Queue(){
     this->head = nullptr;
 }
 
-Queue::Queue(unsigned int char_count, DataNode *array) {
-    this->head = 0;
-    this->tail = 0;
-}
+// Queue::Queue(unsigned int char_count, DataNode *array) {
+//     this->head = 0;
+//     this->tail = 0;
+// }
 
 void Queue::enqueue(node* n){
     DataNode* temp = new DataNode(n);

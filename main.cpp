@@ -58,20 +58,48 @@ cout << "heap tree completed" << endl;
 
     //Queue code
     // DataNode data_nodes[text.size()];
-    char sorted[text.size()];
-    int k = 0;
-    for (const auto &j : text) {
-        unsigned long min_freq = 0;
-        char min_char = 0;
-        for (const auto &i : text) {
-            if (min_char == 0 || i.second < min_freq) {
-                min_char = i.first;
-                min_freq = i.second;
+    // char sorted[text.size()];
+    // int k = 0;
+    // for (const auto &j : text) {
+    //     unsigned long min_freq = 0;
+    //     char min_char = 0;
+    //     for (const auto &i : text) {
+    //         if (min_char == 0 || i.second < min_freq) {
+    //             min_char = i.first;
+    //             min_freq = i.second;
+    //         }
+    //     }
+    //     sorted[k] = min_char;
+    //     k++;
+    // }
+
+    int loop = 0;
+    char sorted_char[text.size()];
+    unsigned long sorted_freq[text.size()];
+    for (const auto &i : text) {
+        sorted_char[loop] = i.first;
+        // sorted_freq = i.second;
+        int index = loop;
+
+        while (index > 0){
+            // if (sorted_freq[index-1] > sorted_freq[index]) {
+            if (text[sorted_char[index-1]] > text[sorted_char[index]]) {
+                //swap
+                char temp_c = sorted_char[index-1];
+                // unsigned long temp_num = sorted_freq[index-1];
+                sorted_char[index-1] = sorted_char[index];
+                // sorted_freq[index-1] = sorted_freq[index];
+                sorted_char[index] = temp_c;
+                // sorted_freq[index] = temp_num;
+                index--;
+            }
+            else{
+                break;
             }
         }
-        sorted[k] = min_char;
-        k++;
+        loop++;
     }
+
     // Queue queue1(text.size(),data_nodes), queue2(text.size(),data_nodes);
     Queue queue1; // leaves
     Queue queue2; // trees
@@ -79,7 +107,9 @@ cout << "heap tree completed" << endl;
         // data_nodes[i].data = sorted[i];
         // data_nodes[i].freq = text[sorted[i]];
         // queue1.enqueue(&data_nodes[i]);
-        queue1.enqueue(new node(sorted[i], text[sorted[i]]));
+        // queue1.enqueue(new node(sorted[i], text[sorted[i]]));
+        queue1.enqueue(new node(sorted_char[i], text[sorted_char[i]]));
+
     }
 
 
@@ -117,6 +147,10 @@ cout << "heap tree completed" << endl;
         z->left = x;
         z->right = y;
         queue2.enqueue(z);
+    }
+
+    if (queue1.dequeue()){
+        cout << "Something's wrong, queue1 not empty" << endl;
     }
 
     node* huffman_tree_2 = queue2.dequeue();
