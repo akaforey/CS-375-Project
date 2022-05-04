@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include "minheap.h"
 #include "queue.h"
+// #include "BST.cpp"
 
 using namespace std;
 
@@ -46,6 +47,11 @@ int main(int argc, char *argv[])
         heap.insert(z);
     }
     node* huffman_tree = heap.extractMin();
+cout << "Printing tree:" << endl;
+    huffman_tree->print(0);
+    // BST huffman_BST = new BST(huffman_tree);
+    // huffman_BST.print(huffman_tree, cout, 3);
+    
 
 cout << "heap tree completed" << endl;
 

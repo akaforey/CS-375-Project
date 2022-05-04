@@ -45,6 +45,18 @@ public:
         }
     }
 
+    void print(int level){
+        if (this->left){
+            (this->left)->print(level+1);
+        }
+        if (this->data){
+            cout << "Char (ascii): " << (unsigned int)this->data << ", char: " << this->data << ", frequency: " << this->freq << ", level: " << level << endl;
+        }
+        if (this->right){
+            (this->right)->print(level+1);
+        }
+    }
+
     char value() {return data;}
     explicit operator char()const {return data;}
     node* left;
