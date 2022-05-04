@@ -14,6 +14,10 @@ public:
     BST():root(nullptr), pptr(&root){}
     BST(const BST& t) :root(nullptr), pptr(&root) {if(t.root != nullptr) root = new node(*(t.root));}
 
+    // BST(node* n){
+    //     this->root = n;
+    // }
+
     node* &get_root(){return root;}
     bool is_empty()const{return (root == nullptr);}
 

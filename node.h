@@ -14,11 +14,21 @@ private:
     int height;
 public:
     explicit node(char& d) :data(d), height(1), freq(1), left(nullptr), right(nullptr){}
-    node(const node& n):data(n.value()), height(n.get_height()), freq(n.freq), left(nullptr), right(nullptr){
-        if (n.left != nullptr) left = new node(*(n.left));
-        if (n.right != nullptr) right = new node(*(n.right));
-    }
+    // node(const node& n):data(n.value()), height(n.get_height()), freq(n.freq), left(nullptr), right(nullptr){
+    //     if (n.left != nullptr) left = new node(*(n.left));
+    //     if (n.right != nullptr) right = new node(*(n.right));
+    // }
     
+    node(unsigned long long frequency, bool is_leaf){
+        this->freq = frequency;
+        this->leaf = is_leaf;
+    }
+    node(char data, unsigned long frequency, bool is_leaf){
+        this->data = data;
+        this->freq = (unsigned long long) frequency;
+        this->leaf = is_leaf;
+    }
+
     void set_data(const char& d) {data = d;}
     int get_height()const {return height;}
     int set_height(){
@@ -35,10 +45,11 @@ public:
         }
     }
 
-    char& value() {return data;}
+    char value() {return data;}
     explicit operator char()const {return data;}
     node* left;
     node* right;
     unsigned long long freq;
+    bool leaf = 1;
 };
 #endif

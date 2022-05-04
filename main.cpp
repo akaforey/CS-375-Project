@@ -33,19 +33,21 @@ int main(int argc, char *argv[])
     Minheap heap;
 
     for (const auto &i : text) {
-        heap.insert(new node(i.first, i.second));
+        node* temp = new node(i.first, i.second, 1);
+        heap.insert(temp);
     }
 
     for (int i=0; i<text.size()-1; i++) {
         node* x = heap.extractMin();
         node* y = heap.extractMin();
-        node* z = new node((x->freq)+(y->freq)); // Internal node
+        node* z = new node((x->freq)+(y->freq), 0); // Internal node
         z->left = x;
         z->right = y;
         heap.insert(z);
     }
     node* huffman_tree = heap.extractMin();
 
+cout << "heap tree completed" << endl;
 
     //Queue code would go here:
     DataNode data_nodes[text.size()];
