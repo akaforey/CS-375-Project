@@ -39,9 +39,9 @@ int main(int argc, char *argv[])
     for (int i=0; i<text.size()-1; i++) {
         node* x = heap.extractMin();
         node* y = heap.extractMin();
-        node* z = new node(x.freq+y.freq); // Internal node
-        z.left = x;
-        z.right = y;
+        node* z = new node((x->freq)+(y->freq)); // Internal node
+        z->left = x;
+        z->right = y;
         heap.insert(z);
     }
     node* huffman_tree = heap.extractMin();
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
     }
 
     while (queue1.head != 0 || queue2.head != 0) {
-         DataNode *node1, node2;
+         DataNode *node1, *node2;
         if (queue2.head == 0) {
             node1 = queue1.dequeue();
             if (queue1.head != 0)
