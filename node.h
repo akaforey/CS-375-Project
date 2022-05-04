@@ -65,7 +65,7 @@ public:
 
             // print the value of the node
             // std::cout << node->m_val << std::endl;
-            if (this->data){
+            if (this->leaf){
                 // cout << "Char (ascii): " << (unsigned int)this->data << ", char: " << this->data << ", frequency: " << this->freq << endl;
                 cout << "Char (ascii): " << (unsigned int)this->data << ", char: " << this->data << ", frequency: " << this->freq << endl;
             }
@@ -85,8 +85,8 @@ public:
 
     char value() {return data;}
     explicit operator char()const {return data;}
-    node* left;
-    node* right;
+    node* left = 0;
+    node* right = 0;
     unsigned long long freq;
     bool leaf = 1;
 };
