@@ -13,7 +13,7 @@ private:
     char data;
     int height;
 public:
-    explicit node(char& d) :data(d), height(1), left(nullptr), right(nullptr){}
+    explicit node(char& d) :data(d), height(1), freq(1), left(nullptr), right(nullptr){}
     node(const node& n):data(n.value()), height(n.get_height()), freq(n.freq), left(nullptr), right(nullptr){
         if (n.left != nullptr) left = new node(*(n.left));
         if (n.right != nullptr) right = new node(*(n.right));
