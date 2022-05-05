@@ -34,13 +34,22 @@ void Minheap::swap(int a, int b){
 }
 
 
+// void Minheap::insert(node* &np){
+//     int index = heap.size();
+//     heap.push_back(np);
+//     while (index>0 && heap.at(index/2)->freq > np->freq){
+//         swap(index, index/2);
+//     }
+//     return;
+// }
+
 void Minheap::insert(node* &np){
-    int index = heap.size();
     heap.push_back(np);
-    while (index>0 && heap.at(index/2)->freq > np->freq){
-        swap(index, index/2);
+    int index = heap.size();
+    while (index>1 && heap.at(index/2-1)->freq > heap.at(index-1)->freq){
+        swap(index-1, index/2-1);
+        index /= 2;
     }
-    return;
 }
 
 

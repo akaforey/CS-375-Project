@@ -34,9 +34,40 @@ int main(int argc, char *argv[])
 
     //Min heap
 
+    pair<char, unsigned long> map_to_array[text.size()];
+    int j=0;
+    for (const auto &i : text) {
+        map_to_array[j] = i;
+        j++;
+    }
+
+    node* nodes[text.size()];
+    for (int i=0; i < text.size(); i++){
+        nodes[i] = new node(map_to_array[i].first, map_to_array[i].second, 1);
+        int temp_index = i;
+        while (temp_index >= 1){
+            //swap down
+            if (nodes[temp_index-1]->freq > nodes[temp_index]->freq) {
+                node* temp_node = nodes[temp_index-1];
+                nodes[temp_index-1] = nodes[temp_index];
+                nodes[temp_index] = temp_node;
+                temp_index--;
+            }
+            else {
+                break;
+            }
+        }
+    }
+
+
+
 
     auto begin = std::chrono::high_resolution_clock::now();
     Minheap heap;
+
+    // for (int i=0; i < text.size(); i++){
+    //     heap.insert(nodes[i]);
+    // }
 
     for (const auto &i : text) {
         node* temp = new node(i.first, i.second, 1);
@@ -110,30 +141,30 @@ cout << "heap tree completed" << endl;
     //     loop++;
     // }
 
-    pair<char, unsigned long> map_to_array[text.size()];
-    int j=0;
-    for (const auto &i : text) {
-        map_to_array[j] = i;
-        j++;
-    }
+    // pair<char, unsigned long> map_to_array[text.size()];
+    // int j=0;
+    // for (const auto &i : text) {
+    //     map_to_array[j] = i;
+    //     j++;
+    // }
 
-    node* nodes[text.size()];
-    for (int i=0; i < text.size(); i++){
-        nodes[i] = new node(map_to_array[i].first, map_to_array[i].second, 1);
-        int temp_index = i;
-        while (temp_index >= 1){
-            //swap down
-            if (nodes[temp_index-1]->freq > nodes[temp_index]->freq) {
-                node* temp_node = nodes[temp_index-1];
-                nodes[temp_index-1] = nodes[temp_index];
-                nodes[temp_index] = temp_node;
-                temp_index--;
-            }
-            else {
-                break;
-            }
-        }
-    }
+    // node* nodes[text.size()];
+    // for (int i=0; i < text.size(); i++){
+    //     nodes[i] = new node(map_to_array[i].first, map_to_array[i].second, 1);
+    //     int temp_index = i;
+    //     while (temp_index >= 1){
+    //         //swap down
+    //         if (nodes[temp_index-1]->freq > nodes[temp_index]->freq) {
+    //             node* temp_node = nodes[temp_index-1];
+    //             nodes[temp_index-1] = nodes[temp_index];
+    //             nodes[temp_index] = temp_node;
+    //             temp_index--;
+    //         }
+    //         else {
+    //             break;
+    //         }
+    //     }
+    // }
 
     begin = std::chrono::high_resolution_clock::now();
     // Queue queue1(text.size(),data_nodes), queue2(text.size(),data_nodes);
