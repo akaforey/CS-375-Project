@@ -98,86 +98,13 @@ cout << "heap tree completed" << endl;
 
 
     //Queue code
-    // DataNode data_nodes[text.size()];
-    // char sorted[text.size()];
-    // int k = 0;
-    // for (const auto &j : text) {
-    //     unsigned long min_freq = 0;
-    //     char min_char = 0;
-    //     for (const auto &i : text) {
-    //         if (min_char == 0 || i.second < min_freq) {
-    //             min_char = i.first;
-    //             min_freq = i.second;
-    //         }
-    //     }
-    //     sorted[k] = min_char;
-    //     k++;
-    // }
-
-    // int loop = 0;
-    // char sorted_char[text.size()];
-    // unsigned long sorted_freq[text.size()];
-    // for (const auto &i : text) {
-    //     sorted_char[loop] = i.first;
-    //     // sorted_freq = i.second;
-    //     int index = loop;
-
-    //     while (index > 0){
-    //         // if (sorted_freq[index-1] > sorted_freq[index]) {
-    //         if (text[sorted_char[index-1]] > text[sorted_char[index]]) {
-    //             //swap
-    //             char temp_c = sorted_char[index-1];
-    //             // unsigned long temp_num = sorted_freq[index-1];
-    //             sorted_char[index-1] = sorted_char[index];
-    //             // sorted_freq[index-1] = sorted_freq[index];
-    //             sorted_char[index] = temp_c;
-    //             // sorted_freq[index] = temp_num;
-    //             index--;
-    //         }
-    //         else{
-    //             break;
-    //         }
-    //     }
-    //     loop++;
-    // }
-
-    // pair<char, unsigned long> map_to_array[text.size()];
-    // int j=0;
-    // for (const auto &i : text) {
-    //     map_to_array[j] = i;
-    //     j++;
-    // }
-
-    // node* nodes[text.size()];
-    // for (int i=0; i < text.size(); i++){
-    //     nodes[i] = new node(map_to_array[i].first, map_to_array[i].second, 1);
-    //     int temp_index = i;
-    //     while (temp_index >= 1){
-    //         //swap down
-    //         if (nodes[temp_index-1]->freq > nodes[temp_index]->freq) {
-    //             node* temp_node = nodes[temp_index-1];
-    //             nodes[temp_index-1] = nodes[temp_index];
-    //             nodes[temp_index] = temp_node;
-    //             temp_index--;
-    //         }
-    //         else {
-    //             break;
-    //         }
-    //     }
-    // }
+ 
 
     begin = std::chrono::high_resolution_clock::now();
-    // Queue queue1(text.size(),data_nodes), queue2(text.size(),data_nodes);
+    
     Queue queue1; // leaves
     Queue queue2; // trees
-    // for (int i = 0; i < text.size(); i++) {
-    //     // data_nodes[i].data = sorted[i];
-    //     // data_nodes[i].freq = text[sorted[i]];
-    //     // queue1.enqueue(&data_nodes[i]);
-    //     // queue1.enqueue(new node(sorted[i], text[sorted[i]]));
-    //     queue1.enqueue(new node(sorted_char[i], text[sorted_char[i]]));
-
-    // }
+    
 
     for (int i=0; i < text.size(); i++){
         queue1.enqueue(nodes[i]);
@@ -234,27 +161,7 @@ cout << "Printing tree 2:" << endl;
     cout << total_weight << endl;
 cout << "queue tree completed" << endl;
 
-    // while (queue1.head != 0 || queue2.head != 0) {
-    //      DataNode *node1, *node2;
-    //     if (queue2.head == 0) {
-    //         node1 = queue1.dequeue();
-    //         if (queue1.head != 0)
-    //             node2 = queue1.dequeue();
-    //     }
-    //     else if (queue1.head == 0) {
-    //         node1 = queue2.dequeue();
-    //         if (queue2.head != 0)
-    //         node2 = queue2.dequeue();
-    //     }
-    //     else {
-    //         if (queue1.tail->freq < queue2.tail->freq) {
-    //             node1 = queue1.dequeue();
-    //         }
-    //         else {
-    //             node1 = queue2.dequeue();
-    //         }
-    //     }
-    // }
+
 
     in_file.close();
     cout << endl;

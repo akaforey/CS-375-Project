@@ -14,10 +14,7 @@ private:
     int height;
 public:
     explicit node(char& d) :data(d), height(1), freq(1), left(nullptr), right(nullptr){}
-    // node(const node& n):data(n.value()), height(n.get_height()), freq(n.freq), left(nullptr), right(nullptr){
-    //     if (n.left != nullptr) left = new node(*(n.left));
-    //     if (n.right != nullptr) right = new node(*(n.right));
-    // }
+
     
     node(unsigned long long frequency, bool is_leaf){
         this->freq = frequency;
@@ -46,17 +43,7 @@ public:
         }
     }
 
-    // void print(int level){
-    //     if (this->left){
-    //         (this->left)->print(level+1);
-    //     }
-    //     if (this->data){
-    //         cout << "Char (ascii): " << (unsigned int)this->data << ", char: " << this->data << ", frequency: " << this->freq << ", level: " << level << endl;
-    //     }
-    //     if (this->right){
-    //         (this->right)->print(level+1);
-    //     }
-    // }
+
 
     void printBT(const std::string& prefix, bool isLeft, string path, unsigned int* total_weight_p){
         // if( this != nullptr ){
