@@ -90,7 +90,10 @@ cout << "Printing tree:" << endl;
     unsigned int total_weight = 0;
     huffman_tree->printBT("", 0, "", &total_weight);
     huffman_tree->show_codes("", 0, "");
-    cout << total_weight << endl;
+    // cout << total_weight << endl;
+    cout << "Original num bits: " << num_letters*8 << endl;
+    cout << "New num bits: " << total_weight << endl;
+    cout << "Compression: " << (float)total_weight/(num_letters*8);
 
     
 
@@ -158,7 +161,10 @@ cout << "Printing tree 2:" << endl;
     total_weight = 0;
     huffman_tree_2->printBT("", 0, "", &total_weight);
     huffman_tree_2->show_codes("", 0, "");
-    cout << total_weight << endl;
+    // cout << total_weight << endl;
+    cout << "Original num bits: " << num_letters*8 << endl;
+    cout << "New num bits: " << total_weight << endl;
+    cout << "Compression: " << (float)total_weight/(num_letters*8);
 cout << "queue tree completed" << endl;
 
 
