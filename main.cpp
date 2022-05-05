@@ -93,7 +93,7 @@ cout << "Printing tree:" << endl;
     // cout << total_weight << endl;
     cout << "Original num bits: " << num_letters*8 << endl;
     cout << "New num bits: " << total_weight << endl;
-    cout << "Compression: " << (float)total_weight/(num_letters*8);
+    cout << "Compression: " << (float)total_weight/(num_letters*8) << endl;
 
     
 
@@ -164,7 +164,7 @@ cout << "Printing tree 2:" << endl;
     // cout << total_weight << endl;
     cout << "Original num bits: " << num_letters*8 << endl;
     cout << "New num bits: " << total_weight << endl;
-    cout << "Compression: " << (float)total_weight/(num_letters*8);
+    cout << "Compression: " << (float)total_weight/(num_letters*8) << endl;
 cout << "queue tree completed" << endl;
 
 
