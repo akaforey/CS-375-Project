@@ -68,15 +68,15 @@ void Queue::enqueue(node* n){
 
 node* Queue::dequeue() {
     node* ret_val;
-    if (this->tail == nullptr){
+    if (this->head == nullptr){
         return nullptr;
     } else {
-        ret_val = this->tail->n;
-        this->tail = this->tail->prev;
-        if (this->tail){
-            this->tail->next = nullptr;
+        ret_val = this->head->n;
+        this->head = this->head->next;
+        if (this->head){
+            this->head->prev = nullptr;
         } else {
-            this->head = nullptr;
+            this->tail = nullptr;
         }
     }
     return ret_val;
