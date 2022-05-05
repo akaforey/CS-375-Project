@@ -1,0 +1,28 @@
+FLAGS = -Wall -Wextra -g
+EXECUTABLE = huffman
+
+all: huffman test
+
+huffman:	main.o	#BST.o
+	g++  main.o -o	huffman
+
+test: test.o
+	g++ test.o -o test
+
+test.o: test.cpp
+	g++ -c test.cpp
+
+main.o: main.cpp
+	g++ -c main.cpp
+
+BST.o:	node.h	BST.cpp
+	g++ -c BST.cpp
+
+scrub: clean
+	rm ~* *.swp *\#
+
+run: $(EXECUTABLE)
+	./$(EXECUTABLE)
+
+clean:
+	rm -f *.o $(EXECUTABLE)
