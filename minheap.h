@@ -8,8 +8,8 @@
 class Minheap
 {
 public:
-    node* peek_min();
-    bool is_empty()const{return (heap.size()==0);}
+    // node* peek_min();
+    // bool is_empty()const{return (heap.size()==0);}
     void swap(int a, int b);
     node* extractMin();
     void insert(node* &np);
@@ -18,12 +18,12 @@ public:
 };
 
 
-node* Minheap::peek_min(){
-    if (heap.size()==0){
-        return nullptr;
-    }
-    return heap.at(0);
-}
+// node* Minheap::peek_min(){
+//     if (heap.size()==0){
+//         return nullptr;
+//     }
+//     return heap.at(0);
+// }
 
 
 void Minheap::swap(int a, int b){
@@ -49,20 +49,21 @@ node* Minheap::extractMin(){
     }
     node* ret_node = heap.at(0);
     heap.at(0) = heap.at(heap.size()-1);
-    int index = 0;
+    int index = 1;
     heap.pop_back();
-    while(index < heap.size()/2){
-        if(heap.at(index)->freq > heap.at(index*2)->freq){
-            swap(index, 2*index);
+    while(index < heap.size()/2 + 1){
+        if(2*index + 1 <= heap.size()-1){
+            if (heap.at(2*index-1)->freq <= heap.at(2*index)->freq) {
+                swap(index-1, 2*index-1);
+                index = 2*index;
+            } else {
+                swap(index-1, 2*index);
+                index = 2*index + 1;
+            }
+        }
+        else if(heap.at(index-1)->freq > heap.at(2*index-1)->freq){
+            swap(index-1, 2*index-1);
             index = 2*index;
-        }
-        else if(2*index + 1 > heap.size()-1){
-            //No right child
-            break;
-        }
-        else if (heap.at(index)->freq > heap.at(2*index+1)->freq){
-            swap(index, 2*index + 1);
-            index = 2*index + 1;
         }
         else{
             break;
