@@ -11,11 +11,7 @@ class node
 {
 private:
     char data;
-    int height;
-public:
-    explicit node(char& d) :data(d), height(1), freq(1), left(nullptr), right(nullptr){}
-
-    
+public:    
     node(unsigned long long frequency, bool is_leaf){
         this->freq = frequency;
         this->leaf = is_leaf;
@@ -25,25 +21,6 @@ public:
         this->freq = (unsigned long long) frequency;
         this->leaf = is_leaf;
     }
-
-
-    void set_data(const char& d) {data = d;}
-    int get_height()const {return height;}
-    int set_height(){
-        int lh = 0;
-        int rh = 0;
-        height = 1;
-
-        if (left != nullptr) lh = left->set_height();
-        if (right != nullptr) rh = right->set_height();
-        if (lh > rh){
-            return height+= lh;
-        }else{
-            return height += rh;
-        }
-    }
-
-
 
     void printBT(const std::string& prefix, bool isLeft, string path, unsigned int* total_weight_p){
         // if( this != nullptr ){
@@ -74,8 +51,6 @@ public:
     }
 
     void show_codes(const std::string& prefix, bool isLeft, string path){
-        // if( this != nullptr ){
-
 
             if (this->leaf){
                 cout << this->data << ": " << path << endl;
