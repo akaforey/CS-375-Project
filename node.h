@@ -69,6 +69,7 @@ public:
             if (this->leaf){
                 // cout << "Char (ascii): " << (unsigned int)this->data << ", char: " << this->data << ", frequency: " << this->freq << endl;
                 cout << "Char (ascii): " << (unsigned int)this->data << ", char: " << this->data << ", frequency: " << this->freq << endl;
+                // cout << this->data << ": " << path << endl;
                 *total_weight_p += path.length() * this->freq;
             }
             else {
@@ -84,6 +85,25 @@ public:
             }
         // }
     }
+
+    void show_codes(const std::string& prefix, bool isLeft, string path){
+        // if( this != nullptr ){
+
+
+            if (this->leaf){
+                cout << this->data << ": " << path << endl;
+            }
+
+            // enter the next tree level - left and right branch
+            if (this->left){
+                this->left->show_codes( prefix + (isLeft ? "│   " : "    "), true, path + '0');
+            }
+            if (this->right){
+                this->right->show_codes( prefix + (isLeft ? "│   " : "    "), false, path + '1');
+            }
+        // }
+    }
+
 
     char value() {return data;}
     explicit operator char()const {return data;}

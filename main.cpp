@@ -58,6 +58,7 @@ int main(int argc, char *argv[])
 cout << "Printing tree:" << endl;
     unsigned int total_weight = 0;
     huffman_tree->printBT("", 0, "", &total_weight);
+    huffman_tree->show_codes("", 0, "");
     cout << total_weight << endl;
 
     
@@ -198,6 +199,7 @@ cout << "heap tree completed" << endl;
 cout << "Printing tree 2:" << endl;
     total_weight = 0;
     huffman_tree_2->printBT("", 0, "", &total_weight);
+    huffman_tree_2->show_codes("", 0, "");
     cout << total_weight << endl;
 cout << "queue tree completed" << endl;
 
