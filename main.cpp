@@ -50,7 +50,10 @@ int main(int argc, char *argv[])
     }
     node* huffman_tree = heap.extractMin();
 cout << "Printing tree:" << endl;
-    huffman_tree->printBT("", 0);
+    unsigned int total_weight = 0;
+    huffman_tree->printBT("", 0, "", &total_weight);
+    cout << total_weight << endl;
+
     
 
 cout << "heap tree completed" << endl;
@@ -184,7 +187,9 @@ cout << "heap tree completed" << endl;
 
     node* huffman_tree_2 = queue2.dequeue();
 cout << "Printing tree 2:" << endl;
-    huffman_tree_2->printBT("", 0);
+    total_weight = 0;
+    huffman_tree_2->printBT("", 0, "", &total_weight);
+    cout << total_weight << endl;
 cout << "queue tree completed" << endl;
 
     // while (queue1.head != 0 || queue2.head != 0) {

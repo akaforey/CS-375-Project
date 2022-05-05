@@ -29,6 +29,7 @@ public:
         this->leaf = is_leaf;
     }
 
+
     void set_data(const char& d) {data = d;}
     int get_height()const {return height;}
     int set_height(){
@@ -57,7 +58,7 @@ public:
     //     }
     // }
 
-    void printBT(const std::string& prefix, bool isLeft){
+    void printBT(const std::string& prefix, bool isLeft, string path, unsigned int* total_weight_p){
         // if( this != nullptr ){
             std::cout << prefix;
 
@@ -68,6 +69,7 @@ public:
             if (this->leaf){
                 // cout << "Char (ascii): " << (unsigned int)this->data << ", char: " << this->data << ", frequency: " << this->freq << endl;
                 cout << "Char (ascii): " << (unsigned int)this->data << ", char: " << this->data << ", frequency: " << this->freq << endl;
+                *total_weight_p += path.length() * this->freq;
             }
             else {
                 cout << "Internal, frequency: " << this->freq << endl;
@@ -75,10 +77,10 @@ public:
 
             // enter the next tree level - left and right branch
             if (this->left){
-                this->left->printBT( prefix + (isLeft ? "│   " : "    "), true);
+                this->left->printBT( prefix + (isLeft ? "│   " : "    "), true, path + '0', total_weight_p);
             }
             if (this->right){
-                this->right->printBT( prefix + (isLeft ? "│   " : "    "), false);
+                this->right->printBT( prefix + (isLeft ? "│   " : "    "), false, path + '1', total_weight_p);
             }
         // }
     }
