@@ -171,7 +171,7 @@ cout << "queue tree completed" << endl;
 
     in_file.close();
     cout << endl;
-    cout << "min_heap time 1: " << time_min_heap_1.count() << endl;
+    //cout << "min_heap time: " << time_min_heap_1.count() << endl;
     cout << "min_heap time: " << time_min_heap.count() << endl;
     cout << "queues time: " << time_queues.count() << endl;
     return 0;
