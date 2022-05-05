@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include "minheap.h"
 #include "queue.h"
+#include <chrono>
 
 using namespace std;
 
@@ -33,13 +34,15 @@ int main(int argc, char *argv[])
 
     //Min heap
 
+
+    auto begin = std::chrono::high_resolution_clock::now();
     Minheap heap;
 
     for (const auto &i : text) {
         node* temp = new node(i.first, i.second, 1);
         heap.insert(temp);
     }
-
+    auto end1 = std::chrono::high_resolution_clock::now();
     for (int i=0; i<text.size()-1; i++) {
         node* x = heap.extractMin();
         node* y = heap.extractMin();
@@ -49,6 +52,9 @@ int main(int argc, char *argv[])
         heap.insert(z);
     }
     node* huffman_tree = heap.extractMin();
+    auto end = std::chrono::high_resolution_clock::now();
+    auto time_min_heap = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    auto time_min_heap_1 = std::chrono::duration_cast<std::chrono::nanoseconds>(end1 - begin);
 cout << "Printing tree:" << endl;
     unsigned int total_weight = 0;
     huffman_tree->printBT("", 0, "", &total_weight);
@@ -114,7 +120,7 @@ cout << "heap tree completed" << endl;
     for (int i=0; i < text.size(); i++){
         nodes[i] = new node(map_to_array[i].first, map_to_array[i].second, 1);
         int temp_index = i;
-        while (temp_index > 1){
+        while (temp_index >= 1){
             //swap down
             if (nodes[temp_index-1]->freq > nodes[temp_index]->freq) {
                 node* temp_node = nodes[temp_index-1];
@@ -128,6 +134,7 @@ cout << "heap tree completed" << endl;
         }
     }
 
+    begin = std::chrono::high_resolution_clock::now();
     // Queue queue1(text.size(),data_nodes), queue2(text.size(),data_nodes);
     Queue queue1; // leaves
     Queue queue2; // trees
@@ -186,6 +193,8 @@ cout << "heap tree completed" << endl;
     }
 
     node* huffman_tree_2 = queue2.dequeue();
+    end = std::chrono::high_resolution_clock::now();
+    auto time_queues = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
 cout << "Printing tree 2:" << endl;
     total_weight = 0;
     huffman_tree_2->printBT("", 0, "", &total_weight);
@@ -215,5 +224,9 @@ cout << "queue tree completed" << endl;
     // }
 
     in_file.close();
+    cout << endl;
+    cout << "min_heap time 1: " << time_min_heap_1.count() << endl;
+    cout << "min_heap time: " << time_min_heap.count() << endl;
+    cout << "queues time: " << time_queues.count() << endl;
     return 0;
 }
